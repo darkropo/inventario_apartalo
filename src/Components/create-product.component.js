@@ -1,8 +1,9 @@
 // Import Modules
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
+import axios from './axios/axios';
 import ProductForm from "./ProductForm";
-  
+const {ROUTE_INV} = require('../config');
+
 // CreateProduct Component
 const CreateProduct = () => {
     console.log("formulario asdasdasdasdasdasddddddddddddddddddddddddddddddd");
@@ -10,8 +11,7 @@ const CreateProduct = () => {
     useState({ name: '', category: '', sub_category: '',  rotation: '', quantity: '', description:'', fabrication_date:'', expire_date:'', sale_value_bs:'',  sale_value_ds:'', buy_value_bs:'',  buy_value_ds:''})
   // onSubmit handler
   const onSubmit = productObject => {
-    axios.post(
-'http://localhost:4000/products/create-product', 
+    axios.post(ROUTE_INV+'products/create', 
     productObject)
       .then(res => {
         if (res.status === 200)

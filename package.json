@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.2.2",
     "bootstrap": "^5.1.0",
+    "env-cmd": "^10.1.0",
     "formik": "^2.2.9",
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0-beta.1",
@@ -22,8 +23,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "stop": "taskkill -F -IM node.exe"
-
+    "start:dev": "env-cmd -f .env.dev npm run-script build"
   },
   "eslintConfig": {
     "extends": [
