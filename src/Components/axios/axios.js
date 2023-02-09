@@ -1,4 +1,3 @@
 import axios from 'axios';
-const {BASE_URL_API} = require('../config');
-const instance = axios.create({baseURL: BASE_URL_API});
+const instance = axios.create({baseURL: 'http://localhost:3001/'});
 export default instance

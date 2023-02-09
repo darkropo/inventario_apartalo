@@ -4,7 +4,7 @@
 docker build -t ia-frontend .
 
 # RUN 
-docker run -it -p 9001:3001 -v $(pwd):/app ia-frontend
+docker run -it -p 3000:3000 -v $(pwd):/app ia-frontend
 
 # Getting Started with Create React App
 
