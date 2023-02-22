@@ -1,3 +1,11 @@
+# To run frontend docker
+
+# BUILD
+docker build -t ia-frontend .
+
+# RUN 
+docker run -it -p 3000:3000 -v $(pwd):/app ia-frontend
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
