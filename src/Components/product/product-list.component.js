@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import axios from '../axios/axios.js';
 import { Table } from "react-bootstrap";
-import ProductTableRow from "./ProductTableRow";
+import ProductTableRow from "./ProductTableRow.js";
   
 const ProductList = () => {
   const [products, setProducts] = useState([]);
   
   useEffect(() => {
     axios
-      .get("http://localhost:4000/products/")
+      .get("/apartalo/inventario/products/list")
       .then(({ data }) => {
         setProducts(data);
       })
@@ -24,8 +24,8 @@ const ProductList = () => {
   };
   
   return (
-    <div className="table-wrapper">
-      <Table striped bordered hover>
+    <div className="">
+      <Table striped bordered hover responsive>
         <thead>
           <tr>
             <th>Name</th>

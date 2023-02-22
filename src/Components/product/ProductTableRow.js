@@ -1,15 +1,17 @@
-import React from "react";
-import { Button } from "react-bootstrap";
+import React, { useState } from "react";
+import { Button, ButtonGroup,  ToggleButton} from "react-bootstrap";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import axios from '../axios/axios.js';
 
 const ProductTableRow = (props) => {
 const { _id, name, category, sub_category,rotation,quantity,description,fabrication_date,expire_date,sale_value_bs,sale_value_ds,buy_value_bs,buy_value_ds} = props.obj;
-
+const radios = [
+    { name: 'Edit', value: '1' },
+    { name: 'Delete', value: '2' },
+  ];
+  const [radioValue, setRadioValue] = useState('1');
 const deleteProduct = () => {
-	axios
-	.delete(
-"http://localhost:4000/products/delete-product/" + _id)
+	axios.delete("/apartalo/inventario/products/delete/" + _id)
 	.then((res) => {
 		if (res.status === 200) {
 		alert("Product successfully deleted");

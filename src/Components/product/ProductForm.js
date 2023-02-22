@@ -1,7 +1,7 @@
 import React from "react";
 import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { FormGroup, FormControl, Button } from "react-bootstrap";
+import { FormGroup, FormControl, Button, Stack } from "react-bootstrap";
 const ProductForm = (props) => {
   const validationSchema = Yup.object().shape({
     name: Yup.string().required("Required"),
@@ -32,6 +32,7 @@ const ProductForm = (props) => {
    <div className="form-wrapper">
       <Formik {...props} validationSchema={validationSchema}>
         <Form>
+        <Stack gap={2} className="mx-auto">
           <FormGroup>
             <label htmlFor="name">Nombre Producto</label>
             <Field name="name" type="text" 
@@ -156,7 +157,9 @@ const ProductForm = (props) => {
             block="block" type="submit">
             {props.children}
           </Button>
+          </Stack>
         </Form>
+        
       </Formik>
     </div>
   );

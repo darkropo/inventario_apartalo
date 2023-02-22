@@ -1,11 +1,10 @@
 // Import Modules
 import React, { useState, useEffect } from "react";
-import axios from './axios/axios';
+import axios from '../axios/axios.js';
 import ProductForm from "./ProductForm";
 
 // CreateProduct Component
 const CreateProduct = () => {
-    console.log("formulario asdasdasdasdasdasddddddddddddddddddddddddddddddd");
   const [formValues, setFormValues] = 
     useState({ name: '', category: '', sub_category: '',  rotation: '', quantity: '', description:'', fabrication_date:'', expire_date:'', sale_value_bs:'',  sale_value_ds:'', buy_value_bs:'',  buy_value_ds:''})
   // onSubmit handler

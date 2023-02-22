@@ -1,18 +1,18 @@
 // Import Modules
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import axios from '../axios/axios.js';
 import ProductForm from "./ProductForm";
   
 // CreateProduct Component
 const EditProduct = (props) => {
+  const { id } = useParams(); 
+  
   const [formValues, setFormValues] = 
     useState({ name: '', category: '', sub_category: '',  rotation: '', quantity: '', description:'', fabrication_date:'', expire_date:'', sale_value_bs:'',  sale_value_ds:'', buy_value_bs:'',  buy_value_ds:''})
   // onSubmit handler
   const onSubmit = (productObject) => {
-    axios.put(
-'http://localhost:4000/products/edit-product' + 
-  props.match.params.id, 
-    productObject)
+    axios.put('/apartalo/inventario/products/edit/' + id, productObject)
       .then(res => {
         if (res.status === 200)
           alert('Product successfully updated.')
@@ -21,6 +21,15 @@ const EditProduct = (props) => {
       })
       .catch(err => alert('Something went wrong'))
   }
+  useEffect(() => {
+    axios.get('/apartalo/inventario/products/edit/' + id)
+      .then((res) => {
+        console.log("product-edit: :::::::::::::::::::::" + res.data);
+        const { name, category, sub_category,rotation,quantity,description,fabrication_date,expire_date,sale_value_bs,sale_value_ds,buy_value_bs,buy_value_ds } = res.data;
+        setFormValues({name, category, sub_category,rotation,quantity,description,fabrication_date,expire_date,sale_value_bs,sale_value_ds,buy_value_bs,buy_value_ds });
+      })
+      .catch((err) => console.log(err));
+  }, []);
     
   // Return product form
   return(
