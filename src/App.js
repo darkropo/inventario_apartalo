@@ -1,5 +1,5 @@
 // Import React
-import React from "react";
+import React, {Component, Fragment} from "react";
 
 // Import Bootstrap
 import { Nav, Navbar, Container, Row, Col }
@@ -13,65 +13,79 @@ import "./App.css";
 import { BrowserRouter as Router,	Route, Routes, Link } from "react-router-dom";
 
 // Import other React Component
-import CreateProduct from	"./Components/create-product.component.js";
-import EditProduct from	"./Components/edit-product.component";
-import ProductList from	"./Components/product-list.component";
+import LandingPage from "./Components/landing/landing-page.component.js";
+import About from "./Components/landing/about.component";
+import Contact from "./Components/landing/contact.component";
 
-// App Component
-const App = () => {
-return (
-	<Router>
-	<div className="App">
-		<header className="App-header">
-		<Navbar bg="dark" variant="dark">
-			<Container>
-			<Navbar.Brand>
-				<Link to={"/create-product"}
-				className="nav-link">
-				Inventario apartalo App
-				</Link>
-			</Navbar.Brand>
 
-			<Nav className="justify-content-end">
-				<Nav>
-				<Link to={"/create-product"}
-					className="nav-link">
-					Crear Producto
-				</Link>
-				</Nav>
-				<Nav>
-				<Link to={"/product-list"}
-					className="nav-link">
-					Lista de Productos
-				</Link>
-				</Nav>
-			</Nav>
-			</Container>
-		</Navbar>
-		</header>
 
-		<Container>
-		<Row>
-			<Col md={12}>
-			<div className="wrapper">
-				<Routes>
-          <Route exact path="/"
-            element={<CreateProduct />} />
-          <Route path="/create-product"
-            element={<CreateProduct/>} />
-          <Route path="/edit-product/:id"
-            element={<EditProduct />} />
-          <Route path="/product-list"
-            element={<ProductList />} />
-          
-				</Routes>
-			</div>
-			</Col>
-		</Row>
-		</Container>
-	</div>
-	</Router>
-);
+class App extends Component{
+	constructor(){
+		super();
+		this.state ={
+
+		}
+		this.links = {
+			link : {
+				option : "Inventario apartalo App",
+				url : "/create-product"
+			}
+		}
+	}
+	render(){
+		return(
+			<Router>
+				<div className="App">
+					<header className="App-header">
+					<Navbar collapseOnSelect bg="dark" variant="dark" expand="lg">
+						<Container>
+						<Navbar.Brand>
+							<Link to={"/"}
+							className="nav-link">
+							Inventario apartalo App
+							</Link>
+						</Navbar.Brand>
+						<Navbar.Toggle aria-controls="responsive-navbar-nav" />
+						<Navbar.Collapse id="responsive-navbar-nav">
+						<Nav className="justify-content-end">
+							<Nav>
+							<Link to={"/"}
+								className="nav-link">
+								Home
+							</Link>
+						</Nav>
+						<Nav>
+						<Link to={"/about"}
+							className="nav-link">
+							Sobre Nosotros
+						</Link>
+						</Nav>
+						<Nav>
+							<Link to={"/contact"}
+								className="nav-link">
+								Contactenos
+							</Link>
+							</Nav>
+						</Nav>
+						</Navbar.Collapse>
+						
+						</Container>
+					</Navbar>
+					</header>
+
+					<Container>
+					<Row>
+						<Routes>
+							<Route path="*"  element={ <LandingPage links={ this.links }/>} />
+							<Route path="/about" element= {About} />
+							<Route path="/contact" element={Contact} />
+						</Routes>	
+					</Row>
+					</Container>
+				</div>
+				</Router>
+			);
+	};
 };
 
 export default App;
