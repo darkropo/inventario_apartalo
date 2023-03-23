@@ -1,7 +1,13 @@
-import React from "react";
+import React, {useState} from "react";
 import * as Yup from "yup";
+import { Link } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { FormGroup, FormControl, Button, Stack } from "react-bootstrap";
+import { FormGroup, Button, Stack } from "react-bootstrap";
+import ShowImage from "../utils/image.component";
+
+
+
+
 const ProductForm = (props) => {
   const validationSchema = Yup.object().shape({
     name: Yup.string().required("Required"),
@@ -26,8 +32,24 @@ const ProductForm = (props) => {
     buy_value_ds: Yup.number()
         .positive("Invalid roll number"),
   });
-  //console.log(props);
-  
+
+  console.log("props::::::::::::::::::::::::::::::::::", props);
+  let button = "";
+  if (props.created) {
+    const data = {
+      productId: props.productId
+    };
+    button = <Link to="/image" state={data}><Button variant="primary" size="lg" block="block" type="button" >Image Load</Button>
+              </Link>;
+  } else {
+    button = <Button variant="primary" size="lg" block="block" type="submit">{props.children}</Button>;
+  }
+    let show = "";
+    if (!props.initialValues.id) {
+      console.log("Pid Empty.");       
+    } else {
+      show = <ShowImage productId={props.initialValues.id}/> 
+    }  
   return(
    <div className="form-wrapper">
       <Formik {...props} validationSchema={validationSchema}>
@@ -153,10 +175,14 @@ const ProductForm = (props) => {
               component="span"
             />
           </FormGroup>
-          <Button variant="danger" size="lg" 
-            block="block" type="submit">
-            {props.children}
-          </Button>
+          <FormGroup>
+          <label htmlFor="imagen">Imagenes del producto</label>
+        
+              {show?show:undefined}
+            
+          </FormGroup>
+          {button}
+          <Button variant="secondary" size="lg" block="block" href="/">Cancel</Button>
           </Stack>
         </Form>
         

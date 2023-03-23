@@ -1,11 +1,13 @@
-import React, { Component, Fragment, useState } from "react";
+import React from "react";
 // Import from react-router-dom
-import { BrowserRouter as Router,	Route, Routes, Link } from "react-router-dom";
+import { Route, Routes, Link } from "react-router-dom";
 // Import other React Component
 import CreateProduct from	"../product/create-product.component.js";
 import ProductList from	"../product/product-list.component.js";
+import ImageUpload from "../utils/image-upload.component.js";
+import EditProduct from "../product/edit-product.component.js";
 
-const LandingPage = () =>{      
+const LandingPage = () =>{    
         return(
             
             <div className="container text-center">
@@ -29,7 +31,12 @@ const LandingPage = () =>{
                                 
                                 <Route path="/create-product"
                                     element={<CreateProduct/>} />
-                                
+
+                                <Route path="/image"
+                                    element={<ImageUpload />} /> 
+
+                                <Route path="/edit-product/:id"
+                                    element={<EditProduct />} />                                
                             </Routes>
                         </div>
                     </div>
