@@ -28,7 +28,7 @@ const EditProduct = (props) => {
         setFormValues({ name, category, sub_category,rotation,quantity,description,fabrication_date,expire_date,sale_value_bs,sale_value_ds,buy_value_bs,buy_value_ds });
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [id]);
     
   // Return product form
   return(
