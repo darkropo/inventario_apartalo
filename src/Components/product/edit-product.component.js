@@ -25,7 +25,7 @@ const EditProduct = (props) => {
     axios.get('/apartalo/inventario/products/edit/' + id)
       .then((res) => {
         const { name, category, sub_category,rotation,quantity,description,fabrication_date,expire_date,sale_value_bs,sale_value_ds,buy_value_bs,buy_value_ds } = res.data;
-        setFormValues({id, name, category, sub_category,rotation,quantity,description,fabrication_date,expire_date,sale_value_bs,sale_value_ds,buy_value_bs,buy_value_ds });
+        setFormValues({ name, category, sub_category,rotation,quantity,description,fabrication_date,expire_date,sale_value_bs,sale_value_ds,buy_value_bs,buy_value_ds });
       })
       .catch((err) => console.log(err));
   }, []);

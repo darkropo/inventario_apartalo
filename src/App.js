@@ -1,8 +1,8 @@
 // Import React
-import React, {Component, Fragment} from "react";
+import React, {Component} from "react";
 
 // Import Bootstrap
-import { Nav, Navbar, Container, Row, Col }
+import { Nav, Navbar, Container, Row }
 		from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 
