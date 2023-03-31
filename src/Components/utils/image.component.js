@@ -15,7 +15,7 @@ const ShowImage = (props) =>{
           .catch((error) => {
             console.log(error);
           });
-      }, []);
+      }, [props.productId]);
   
       return (        
             <Container>
