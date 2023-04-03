@@ -7,7 +7,7 @@ import { Button } from "react-bootstrap";
 const ImageUpload = () =>{
   const location = useLocation();
   const data = location.state;
-  console.log("props::::::::::::::::::::::::::::::::::::::::::::::::::::::::", data);
+  console.log("imageuploadprops::::::::::::::::::::::::::::::::::::::::::::::::::::::::", data);
   const [images, setImages] = React.useState([]);
   const maxNumber = 69;
   const onChange = (imageList, addUpdateIndex) => {

@@ -9,7 +9,7 @@ const EditProduct = (props) => {
   const { id } = useParams(); 
   
   const [formValues, setFormValues] = 
-    useState({id:'', name: '', category: '', sub_category: '',  rotation: '', quantity: '', description:'', fabrication_date:'', expire_date:'', sale_value_bs:'',  sale_value_ds:'', buy_value_bs:'',  buy_value_ds:''})
+    useState({_id:'', name: '', category: '', sub_category: '',  rotation: '', quantity: '', description:'', fabrication_date:'', expire_date:'', sale_value_bs:'',  sale_value_ds:'', buy_value_bs:'',  buy_value_ds:''})
   // onSubmit handler
   const onSubmit = (productObject) => {
     axios.put('/apartalo/inventario/products/edit/' + id, productObject)
@@ -24,12 +24,13 @@ const EditProduct = (props) => {
   useEffect(() => {
     axios.get('/apartalo/inventario/products/edit/' + id)
       .then((res) => {
-        const { name, category, sub_category,rotation,quantity,description,fabrication_date,expire_date,sale_value_bs,sale_value_ds,buy_value_bs,buy_value_ds } = res.data;
-        setFormValues({ name, category, sub_category,rotation,quantity,description,fabrication_date,expire_date,sale_value_bs,sale_value_ds,buy_value_bs,buy_value_ds });
+        
+        const {name, category, sub_category,rotation,quantity,description,fabrication_date,expire_date,sale_value_bs,sale_value_ds,buy_value_bs,buy_value_ds } = res.data;
+        setFormValues({id,name, category, sub_category,rotation,quantity,description,fabrication_date,expire_date,sale_value_bs,sale_value_ds,buy_value_bs,buy_value_ds });
       })
       .catch((err) => console.log(err));
   }, [id]);
-    
+  
   // Return product form
   return(
     <ProductForm initialValues={formValues} 

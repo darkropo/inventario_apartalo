@@ -5,51 +5,46 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { FormGroup, Button, Stack } from "react-bootstrap";
 import ShowImage from "../utils/image.component";
 
-
-
+const validationSchema = Yup.object().shape({
+  name: Yup.string().required("Required"),
+  category: Yup.string().required("Required"),
+  sub_category: Yup.string().required("Required"),
+  rotation: Yup.number().integer().required("Required") //1 to 5 number higher mayor rotation
+      .min(1,"Must be between 1 and 5.")
+      .max(5,"Must be between 1 and 5."),
+  quantity: Yup.number().integer("Must be a number.")
+      .positive("Invalid roll number")
+      .required("Required"),
+  description: Yup.string()
+    .required("Required"),
+  fabrication_date: Yup.date(),
+  expire_date: Yup.date(),
+  sale_value_bs: Yup.number()
+      .positive("Invalid roll number"),
+  sale_value_ds: Yup.number()
+      .positive("Invalid roll number"),
+  buy_value_bs: Yup.number()
+      .positive("Invalid roll number"),
+  buy_value_ds: Yup.number()
+      .positive("Invalid roll number"),
+});
 
 const ProductForm = (props) => {
-  const validationSchema = Yup.object().shape({
-    name: Yup.string().required("Required"),
-    category: Yup.string().required("Required"),
-    sub_category: Yup.string().required("Required"),
-    rotation: Yup.number().integer().required("Required") //1 to 5 number higher mayor rotation
-        .min(1,"Must be between 1 and 5.")
-        .max(5,"Must be between 1 and 5."),
-    quantity: Yup.number().integer("Must be a number.")
-        .positive("Invalid roll number")
-        .required("Required"),
-    description: Yup.string()
-      .required("Required"),
-    fabrication_date: Yup.date(),
-    expire_date: Yup.date(),
-    sale_value_bs: Yup.number()
-        .positive("Invalid roll number"),
-    sale_value_ds: Yup.number()
-        .positive("Invalid roll number"),
-    buy_value_bs: Yup.number()
-        .positive("Invalid roll number"),
-    buy_value_ds: Yup.number()
-        .positive("Invalid roll number"),
-  });
+  const data = {
+    "productId":props.productId
+  };
+  const button = props.created ? (<Link to="/image" state={ data } >
+                                <Button variant="primary" size="lg" block="block" type="button">
+                                  Image Load
+                                </Button>
+                            </Link>) 
+                        :
+                            (<Button variant="primary" size="lg" block="block" type="submit">
+                                {props.children}
+                              </Button>);
 
-  console.log("props::::::::::::::::::::::::::::::::::", props);
-  let button = "";
-  if (props.created) {
-    const data = {
-      productId: props.productId
-    };
-    button = <Link to="/image" state={data}><Button variant="primary" size="lg" block="block" type="button" >Image Load</Button>
-              </Link>;
-  } else {
-    button = <Button variant="primary" size="lg" block="block" type="submit">{props.children}</Button>;
-  }
-    let show = "";
-    if (!props.initialValues.id) {
-      console.log("Pid Empty.");       
-    } else {
-      show = <ShowImage productId={props.initialValues.id}/> 
-    }  
+const show = props.initialValues.id ? <ShowImage productId={props.initialValues.id} /> : null;
+console.log("imageshow:::::::::::::::::::::::::::::::::::::", show);
   return(
    <div className="form-wrapper">
       <Formik {...props} validationSchema={validationSchema}>
@@ -117,8 +112,7 @@ const ProductForm = (props) => {
           </FormGroup>
           <FormGroup>
           <label htmlFor="fabrication_date">Fecha de Fabricacion</label>
-            <Field name="fabrication_date" type="date" 
-                className="form-control" />
+            <Field name="fabrication_date" type="date" className="form-control" />
             <ErrorMessage
               name="fabrication_date"
               className="d-block invalid-feedback"
