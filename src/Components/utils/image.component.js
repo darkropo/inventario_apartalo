@@ -4,13 +4,13 @@ import Container from 'react-bootstrap/Container';
 
 const ShowImage = (props) =>{
     const [images, setImages] = React.useState([]);
-    console.log("imagesprops::::::::::::::::", props);
+    
     useEffect(() => {
         axios
           .get("/apartalo/inventario/utils/images/upload/" + props.productId)
           .then(({ data }) => {
             setImages(data);
-            
+            console.log("imagesprops::::::::::::::::", data);
           })
           .catch((error) => {
             console.log(error);
@@ -24,7 +24,7 @@ const ShowImage = (props) =>{
                     
                     images.map((image) =>(
                       
-                        <img src={image.imageUrl} alt="" width="100" />
+                        <img key={image._id} src={image.imageUrl} alt="" width="100" />
                     ))
                 }
                                
