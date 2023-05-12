@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "../axios/axios.js";
 import { Container, Table, Form, Button, Stack } from "react-bootstrap";
-import { withAuth } from "../utils/auth-roles.component";
+//import { withAuth } from "../utils/auth-roles.component";
 
 
 const Role = () => {
@@ -17,7 +17,7 @@ const Role = () => {
 
   useEffect(() => {
     const fetchRoles = async () => {
-        const response = await axios.get("/apartalo/inventario/auth/role")
+        await axios.get("/apartalo/inventario/auth/role")
         .then(response =>{
           setRoles(response.data);
         });

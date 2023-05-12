@@ -25,7 +25,7 @@ const Login = () => {
         localStorage.setItem('token', response.data.token);
 
         // Extract relevant user info from decoded token and save in localStorage
-        const decodedToken = decodeJwt(response.data.token);
+        //const decodedToken = decodeJwt(response.data.token);
         //localStorage.setItem('role', decodedToken.role);
         //localStorage.setItem('username', decodedToken.email);
 
