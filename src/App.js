@@ -58,7 +58,7 @@ class App extends Component {
                         Home
                       </Link>
                     </Nav>
-                    //{!this.state.isAuthenticated && (
+                    {!this.state.isAuthenticated && (
                     <Nav>
                       <Link
                           to={"#"}
@@ -68,7 +68,7 @@ class App extends Component {
                           Links
                         </Link>
                     </Nav>
-                    //)}
+                    )}
                     {this.state.isAuthenticated && (
                       <Nav>
                         <Link to={"/links"} className="nav-link">
