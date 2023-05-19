@@ -36,10 +36,10 @@ const LandingPage = () =>{
                                     element={<EditProduct />} />  
                                       
                                 <Route path="/create-user"
-                                    element={<User />} /> 
+                                    element={ <User /> } /> 
                                     
                                 <Route path="/create-role"
-                                    element={<Role />}/>                         
+                                    element={< Role/> }/>                         
                             </Routes>
                         </div>
                     </div>
