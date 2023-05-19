@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "../axios/axios.js";
 import { Container, Table, Form, Button, Stack } from "react-bootstrap";
-//import { withAuth } from "../utils/auth-roles.component";
+import { errorBoundary } from '../utils/error.component.js';
 
 
 const Role = () => {
@@ -11,7 +11,6 @@ const Role = () => {
   const [loading, setLoading] = useState(false);
   const [selectedRole, setSelectedRole] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
-  
   const token = localStorage.getItem("token");
 
 
@@ -175,4 +174,4 @@ const Role = () => {
   );
 };
 
-export default Role;
+export default errorBoundary(Role);
