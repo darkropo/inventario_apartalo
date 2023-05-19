@@ -20,7 +20,7 @@ const Login = () => {
     onSubmit: async (values) => {
       try {
         const response = await axios.post('/apartalo/inventario/auth/login', values);
-        console.log("data::::::::::::::::", response.data);
+        
         // Save the user's session information
         localStorage.setItem('token', response.data.token);
 

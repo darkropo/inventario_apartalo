@@ -1,13 +1,27 @@
 module.exports = function (webpackEnv) {
-    // ...
-    return {
-     // ...
+  // ...
+  return {
+      // ...
+      entry: ['babel-polyfill', './src/index.js', 'history'],
+      module: {
+          rules: [
+              {
+                  test: /\.js$/,
+                  exclude: /node_modules/,
+                  loader: 'babel-loader'
+              },
+              {
+                  test: require.resolve('history'),
+                  loader: 'expose-loader?History'
+              }
+          ]
+      },
       resolve: {
-        // ...
-        fallback: {
-          crypto: require.resolve("crypto-browserify"),
-          stream: require.resolve("stream-browserify"),
-        }
+          // ...
+          fallback: {
+              crypto: require.resolve("crypto-browserify"),
+              stream: require.resolve("stream-browserify")
+          }
       }
-    }
   }
+}
