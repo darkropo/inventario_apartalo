@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { ErrorPop } from '../utils/error.component.js';
 
 const instance = axios.create({
   baseURL: 'http://localhost:3001/',
@@ -25,8 +26,8 @@ instance.interceptors.response.use(
     // Handle error
     switch (error.response.status) {
         case 401:
-          localStorage.removeItem('token');
-          window.location.href = '/login';
+          return <ErrorPop error={error} />
+          //window.location.href = '/error';
           break;
         case 404:
         case 500:

@@ -44,7 +44,7 @@ const ProductForm = (props) => {
                               </Button>);
 
 const show = props.initialValues.id ? <ShowImage productId={props.initialValues.id} /> : null;
-console.log("imageshow:::::::::::::::::::::::::::::::::::::", show);
+
   return(
    <div className="form-wrapper">
       <Formik {...props} validationSchema={validationSchema}>

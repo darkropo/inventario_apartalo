@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import LandingPage from "./Components/landing/landing-page.component.js";
 import About from "./Components/landing/about.component";
 import Contact from "./Components/landing/contact.component";
-import Login from "./Components/landing/login.component.js";
+import { Login,handleLogout } from "./Components/landing/login.component.js";
 import Home from "./Components/landing/home.component.js";
 
 class App extends Component {
@@ -97,7 +97,7 @@ class App extends Component {
                         <Link
                           to={"#"}
                           onClick={() => {
-                            localStorage.removeItem("token"); // remove the token from localStorage
+                            handleLogout() // remove the token from localStorage
                             this.setState({ isAuthenticated: false }); // set isAuthenticated state to false
                           }}
                           className="nav-link"
