@@ -20,7 +20,7 @@ module.exports = function (webpackEnv) {
           // ...
           fallback: {
              
-              stream: require.resolve("stream-browserify")
+      
           }
       }
   }
