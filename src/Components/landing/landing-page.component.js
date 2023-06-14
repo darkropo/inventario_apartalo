@@ -6,6 +6,7 @@ import ImageUpload from "../utils/image-upload.component.js";
 import EditProduct from "../product/edit-product.component.js";
 import User from "../user/create-user.component.js";
 import Role from "../user/create-role.component.js";
+import {errorBoundary} from '../utils/error.component.js';
 
 const LandingPage = () =>{    
         return(
@@ -39,7 +40,7 @@ const LandingPage = () =>{
                                     element={ <User /> } /> 
                                     
                                 <Route path="/create-role"
-                                    element={< Role/> }/>                         
+                                    element={< Role/> }/>                   
                             </Routes>
                         </div>
                     </div>
@@ -50,4 +51,4 @@ const LandingPage = () =>{
 
 
 
-export default LandingPage;
+export default errorBoundary(LandingPage);

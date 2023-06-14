@@ -25,3 +25,6 @@ yarn-error.log*
 docker-compose.yml
 .env
 .env.dev
+
+src/Components/axios/axios.js
+package-lock.json
