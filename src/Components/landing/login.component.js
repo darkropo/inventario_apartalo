@@ -3,12 +3,22 @@ import { Form, Button } from 'react-bootstrap';
 import axios from '../axios/axios.js';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-//import { decodeJwt } from 'jose';
+import { decodeJwt } from 'jose';
 
 const validationSchema = Yup.object().shape({
   username: Yup.string().required('Username is required.'),
   password: Yup.string().required('Password is required.'),
 });
+
+const handleLogout = () => {    
+  // Remove user info and token from localStorage
+  localStorage.removeItem('role');
+  localStorage.removeItem('username');
+  localStorage.removeItem('token'); 
+
+  // Redirect the user to the login page
+  window.location.href = '/home';
+};
 
 const Login = () => {
   const formik = useFormik({
@@ -25,9 +35,9 @@ const Login = () => {
         localStorage.setItem('token', response.data.token);
 
         // Extract relevant user info from decoded token and save in localStorage
-        //const decodedToken = decodeJwt(response.data.token);
-        //localStorage.setItem('role', decodedToken.role);
-        //localStorage.setItem('username', decodedToken.email);
+        const decodedToken = decodeJwt(response.data.token);
+        localStorage.setItem('role', decodedToken.role);
+        localStorage.setItem('username', decodedToken.email);
 
         // Redirect the user to the homepage or dashboard
         window.location.href = '/';
@@ -40,17 +50,6 @@ const Login = () => {
   });
 
   const [error, setError] = useState(null); // add this line
-
-  const handleLogout = () => {    
-    // Remove user info and token from localStorage
-    localStorage.removeItem('role');
-    localStorage.removeItem('username');
-    localStorage.removeItem('token'); 
-
-    // Redirect the user to the login page
-    window.location.href = '/login';
-  };
-
   // Check if user is logged in and retrieve user info from localStorage
   const isLoggedIn = localStorage.getItem('token') ? true : false;
   const username = localStorage.getItem('username');
@@ -64,7 +63,7 @@ const Login = () => {
     );
   } else {
     return (
-      <Fragment>
+      <Fragment >
         {error && <div className="alert alert-warning">{error}</div>} {/* add this line */}
         <Form onSubmit={formik.handleSubmit}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -98,4 +97,4 @@ const Login = () => {
   }
 };
 
-export default Login;
+export {Login, handleLogout};

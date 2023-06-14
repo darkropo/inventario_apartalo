@@ -13,6 +13,15 @@ const ErrorView = ({ error }) => (
     </div>
   </div>
 );
+
+export const ErrorPop = (error) => {
+  return (
+    <div className="error-view">
+      <h3>Error</h3>
+      <p>{error.message}</p>
+    </div>
+  );
+};
  
 export default class ErrorBoundary extends Component {
   constructor(props) {

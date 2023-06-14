@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from '../axios/axios.js';
 import { Table } from "react-bootstrap";
 import ProductTableRow from "./ProductTableRow.js";
-  
+
+const token = localStorage.getItem("token"); 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
   
@@ -15,7 +16,7 @@ const ProductList = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [token]);
   
   const DataTable = () => {
     return products.map((res, i) => {
