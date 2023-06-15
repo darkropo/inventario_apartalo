@@ -2,7 +2,7 @@ import axios from 'axios';
 import { ErrorPop } from '../utils/error.component.js';
 
 const instance = axios.create({
-  baseURL: 'http://localhost:3001/',
+  baseURL: 'http://ec2-54-233-123-190.sa-east-1.compute.amazonaws.com:3001/',
   headers: {
     'Content-Type': 'application/json',
     Accept: 'application/json',
