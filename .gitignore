@@ -28,3 +28,4 @@ docker-compose.yml
 
 src/Components/axios/axios.js
 package-lock.json
+dist/
