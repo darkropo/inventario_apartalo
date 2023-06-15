@@ -28,7 +28,6 @@ instance.interceptors.response.use(
         case 401:
           return <ErrorPop error={error} />
           //window.location.href = '/error';
-          break;
         case 404:
         case 500:
           alert(error.message);
